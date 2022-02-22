@@ -1,3 +1,10 @@
+--- from public db
+SELECT * FROM
+
+
+
+
+
 ---- AREA ------
 
 SELECT * FROM simple.area
