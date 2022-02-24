@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 --- from public db
 SELECT * FROM
 
@@ -6,8 +5,6 @@ SELECT * FROM
 
 
 
-=======
->>>>>>> 5945cdd51e0461e9d314e3e543ea7fbe5713ceb4
 ---- AREA ------
 
 SELECT * FROM simple.area
