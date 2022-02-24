@@ -38,7 +38,11 @@ SELECT * FROM simple.cube5data1
 
 
 
+<<<<<<< HEAD
 ---NODE---
+=======
+%---NODE---
+>>>>>>> 5945cdd51e0461e9d314e3e543ea7fbe5713ceb4
 
 SELECT * FROM simple.node
 nodenr
