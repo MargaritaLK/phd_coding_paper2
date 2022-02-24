@@ -38,7 +38,7 @@ SELECT * FROM simple.cube5data1
 
 
 
----NODE---
+%---NODE---
 
 SELECT * FROM simple.node
 nodenr
