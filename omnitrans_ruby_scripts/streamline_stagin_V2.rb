@@ -12,8 +12,11 @@ streamLine = OtStreamLine.new
 ## network - static
 streamLine.input.network = [10,10]
 
+
 ## OD matrix - static
 #streamLine.input.odMatrix = [1,10,10,1]
+
+
 
 ## OD matrix - for staging
 streamLine.input.odMatrix = [1, 10, [10, 20, 30], 1]
@@ -56,15 +59,16 @@ streamLine.propagation.duration = 14400
 #streamLine.routeCost.routeDataSet = SL_MEMORY
 
 streamLine.output.routeSet = SL_OMNITRANS
-streamLine.output.routeSet.pmturi = [1,10,350,1,19,1]
+streamLine.output.routeSet.pmturi = [1,10,150,1,8,1]
 
-streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
+#streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
 
 
 streamLine.output.persistCostSnapshots = true
 
 
 # Store the loads
+#streamLine.output.load = [p,m,t,u,r,i]
 streamLine.output.load = [1,10,100,1,19,1]
 
 

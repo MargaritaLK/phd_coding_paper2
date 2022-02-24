@@ -36,6 +36,7 @@ streamLine.propagation.duration = 14400
 # ---- OUTPUT
 
 # Store the loads
+#streamLine.output.load = [p,m,t,u,r,i]
 streamLine.output.load = [1,10,100,1,19,1]
 
 # Execute

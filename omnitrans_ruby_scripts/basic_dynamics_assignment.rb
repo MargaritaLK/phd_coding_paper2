@@ -1,26 +1,11 @@
+#[p,m,t,u,r,i]
+#purpose mode time user result iteration
+
 
 #create instance of Streamline
-
 streamLine = OtStreamLine.new
 
 
-#Purpose
-#1  totaal
-
-#Mode
-#1 auto
-
-#Time
-#2 period2
-
-#User
-#1 totaal
-
-#Result
-#1 dynamic
-
-#Iteration
-#1 iteration
 
 
 
@@ -28,13 +13,15 @@ streamLine = OtStreamLine.new
 
 streamLine.input.network = [1, 2]
 
+#streamLine.input.odMatrix = [p,m,t,u]
 streamLine.input.odMatrix = [1, 2, 2, 1]
 
 
 
-# route set generation (optional)
+# ROUTE SET generation (optional)
 
-# route choice (optional)
+
+# ROUTE CHOICE (optional)
 
 
 
@@ -43,6 +30,7 @@ streamLine.propagation.duration = 14400
 
 
 # OUTPUT
+#streamLine.output.load = [p,m,t,u,r,i]
 streamLine.output.load = [1, 1, 2, 2, 1, 1 ]
 
 
