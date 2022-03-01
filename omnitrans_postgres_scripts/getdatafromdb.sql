@@ -1,6 +1,7 @@
 --- from public db
-SELECT * FROM
-
+SELECT * FROM public.dimension
+--dimension types
+--Purpose  --Mode   --Time  -- User   --Result  --Iteration:
 
 
 

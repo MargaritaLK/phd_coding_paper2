@@ -1,9 +1,24 @@
 
 
+
+
+
+
+
+
 --- om link lenth naar km te zetten.
 UPDATE simple.link
 
 SET length = length/1000
+
+
+
+
+
+
+---update values in dimension table
+
+UPDATE public.dimension
 
 
 
