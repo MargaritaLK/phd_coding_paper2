@@ -138,3 +138,30 @@ SELECT * FROM simple.count2data1
 --
 
 SELECT * FROM simple.count6data1
+
+
+
+
+
+
+---- CONTROL DATA -----
+
+SELECT * FROM simple.control
+
+
+SELECT * FROM simple.control1data1
+
+
+SELECT * FROM simple.control2data1
+--
+
+
+SELECT * FROM simple.control3data1
+-- model, time, controlproperties
+
+
+SELECT * FROM simple.control5data1
+--deze heeft tijd
+
+
+SELECT * FROM simple.control8data1
