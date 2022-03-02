@@ -30,7 +30,7 @@ streamLine.propagation.adjustSegmentLength = true
 # OUTPUT
 #streamLine.output.load =[p, m,  t,  u,  r,i]
 streamLine.output.load = [1, 10, 100, 1, 4, 7 ]
-
+streamLine.output.persistCostSnapshots = true
 
 
 

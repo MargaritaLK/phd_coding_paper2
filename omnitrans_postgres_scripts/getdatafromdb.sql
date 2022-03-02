@@ -59,19 +59,7 @@ SELECT * FROM simple.node5data1
 SELECT * FROM simple.node
 nodenr
 
-SELECT * FROM simple.node1_1data1
--
 
-SELECT * FROM simple.node1data1
--
-
-SELECT * FROM simple.node1data2
--
-
-SELECT * FROM simple.node2data1
--
-
-SELECT * FROM simple.node5data1
 -
 
 
@@ -118,7 +106,7 @@ SELECT * FROM simple.link5_1data2
 
 
 SELECT * FROM simple.link5_1data3
---
+--link in and out flow
 
 
 SELECT * FROM simple.link5_2data1
@@ -161,7 +149,7 @@ SELECT * FROM simple.control3data1
 
 
 SELECT * FROM simple.control5data1
---deze heeft tijd
+-- time on and off controller
 
 
 SELECT * FROM simple.control8data1
