@@ -90,8 +90,7 @@ SELECT * FROM simple.link1data1
 --
 
 SELECT * FROM simple.link2_1data1
---link nr direction
-
+--link nr direction and typenr
 
 SELECT * FROM simple.link3_1data1
 --capacity etc ingestelde waardes
