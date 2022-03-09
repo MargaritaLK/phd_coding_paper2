@@ -1,0 +1,17 @@
+## CONTROLLERS ##
+
+
+opties:
+- static variable massagee sign (VMS)
+- dynamic variable message sign (VMS)
+- ramp metering (niet relevant)
+- dynamic link attribute adaptor
+- lane adaptor
+- outflow limiter
+
+
+
+use:
+- dynamic link attribute adaptor
+
+let op, is voor 1 direction of the road

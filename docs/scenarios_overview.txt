@@ -1,0 +1,13 @@
+## scnearios to calculate
+
+
+
+## varieren met flood depth
+# evt ook nog in de aankomst tijd
+
+
+## varieren met dorpskernen
+
+
+
+## uitval wegen moet er ook in als ik varieer met de aarival timme
