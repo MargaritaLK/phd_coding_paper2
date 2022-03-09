@@ -4,6 +4,29 @@ SELECT * FROM public.dimension
 --Purpose  --Mode   --Time  -- User   --Result  --Iteration:
 
 
+SELECT * FROM public.cube
+-- namen van cubes
+
+
+SELECT * FROM public.cube1_1data1
+-- nr households - maar doe ik niets mee
+
+
+
+SELECT * FROM public.cube4_1data1
+--
+
+
+SELECT * FROM public.cube4data1
+-- links naar files
+
+
+SELECT * FROM public.cube6_1data1
+---
+
+
+
+
 
 
 ---- AREA ------
