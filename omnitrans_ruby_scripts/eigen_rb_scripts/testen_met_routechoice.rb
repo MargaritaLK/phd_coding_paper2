@@ -44,6 +44,7 @@ streamLine.routeGenerator.filter.maxOverlapFactor = 0.6
 streamLine.routeGenerator.filter.maxNumberOfRoutes = 5
 
 
+
 #route mapping - uitzoeken
 #optie in SL_MADAM
 #single channels vs turn fraction
