@@ -7,12 +7,15 @@ streamLine = OtStreamLine.new
 ##-----------------------------
 streamLine.input.network = [10, 10]
 
+
 #controller aan
-streamLine.input.controls = true
+#streamLine.input.controls = true
+
 
 ## OD - at once met leegloop tijd
 streamLine.input.odMatrix = [1, 10, [10, 1000 ], 1]
-streamLine.input.durations = [3600, 82800]
+streamLine.input.durations = [3600, 39600]
+
 
 
 
@@ -23,8 +26,8 @@ streamLine.input.durations = [3600, 82800]
 
 
 #TRAFFIC PROPAGATION
-#--------------------------------------------
-streamLine.propagation.duration = 86400
+#----------------------------------
+streamLine.propagation.duration = 43200
 streamLine.propagation.adjustSegmentLength = true
 
 
@@ -32,8 +35,8 @@ streamLine.propagation.adjustSegmentLength = true
 
 # OUTPUT
 #-----------------------------------------
-#streamLine.output.load =[p, m,  t,  u,  r,i]
-streamLine.output.load = [1, 10, 100, 2, 3, 1 ]
+#streamLine.output.load =[p, m,  t,  u,  r, i]
+streamLine.output.load = [1, 10, 100, 1, 99, 7 ]
 streamLine.output.persistCostSnapshots = true
 
 
