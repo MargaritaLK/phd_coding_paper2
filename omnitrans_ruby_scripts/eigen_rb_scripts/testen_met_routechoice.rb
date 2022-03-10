@@ -32,12 +32,23 @@ streamLine.routeGenerator.alternativeGenerator.maxVariance = 0.3
 streamLine.routeGenerator.alternativeGenerator.threshold = 3
 streamLine.routeGenerator.alternativeGenerator.consecutiveThreshold = true
 
+streamLine.routeGenerator.filter  = SL_OVERLAPANDDETOUR
+
+#deze nog checken
+streamLine.routeGenerator.multiplicity = SL_ALLTOONE
 
 streamLine.routeGenerator.filter.maxTotalDetourFactor = 1.9
 streamLine.routeGenerator.filter.minNonCommonDetourFactor = 0.01
 streamLine.routeGenerator.filter.maxNonCommonDetourFactor = 2.0
 streamLine.routeGenerator.filter.maxOverlapFactor = 0.6
 streamLine.routeGenerator.filter.maxNumberOfRoutes = 5
+
+
+#route mapping - uitzoeken
+#optie in SL_MADAM
+#single channels vs turn fraction
+
+
 
 
 
