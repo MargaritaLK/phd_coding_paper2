@@ -55,12 +55,14 @@ streamLine.routeChoice.lambda = 1
 streamLine.routeChoice.dualityGap = 0.01
 streamLine.routeChoice.successiveAverageOffset = 0
 
+streamLine.routeChoice.preTrip = SL_NONE
 
 streamLine.routeChoice.successive = SL_PCL
 
 
 #ROUTE COST MODEL
 #--------------------------------------------------
+
 
 streamLine.routeCost.routeDataSet = SL_OMNITRANS
 streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
