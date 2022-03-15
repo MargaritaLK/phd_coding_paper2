@@ -1,0 +1,8 @@
+### OPTION FOR FLOODED ROADS IN omnitrans
+
+
+
+## aanpassing network, zodat het al in route generator model zit.
+maar kan niet, want deze is niet dynamisch.
+
+## moet via route cost, doordat travel time hoog worden, en daardoor andere keuze

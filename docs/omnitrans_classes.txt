@@ -1,0 +1,100 @@
+DOC - omnitrans overzicht wat in te stelllen
+
+
+
+## INPUT ##
+
+
+
+
+
+## ROUTE GENERATION ##
+---------------------------------------
+in: network
+wat: paden. en evt een selectie daar binnen
+out: route sets waar uit gekozen kan worden van iedere o naar d.
+
+
+
+
+
+--------------------------------------------------
+## ROUTE CHOICE model ##
+------------------------------------------
+
+wat: hoe gekozen wordt binnen de route sets
+in: route set, en route cost. mensen ook hun route kiezen obv kosten van die route
+ (hier moet dus een route die overstroomt is een hele grote kosten hebben)
+
+
+opties:
+- simpelste vorm is SL_ONESHOT (iedereen in 1 keer op het network)
+- more advanced: SL_MSA. defines route choice for multiple iterations
+
+routeChoice.initial = set the route choice method to be used at time step zero of each iteration (initial)
+routeChoice.preTrip = set the route choice method for specific time intervals within one iterations
+routeChoice.succesive =
+
+for ieder keuze moment zijn de volgende methods available:
+SL_AON = all demand naar route met laagste kosten
+SL_UNIFORM = all routes gets equal portion of demand
+SL_MNL = multinomial logit
+SL_PCL = pared combinatorial logi (is default in madam, more advanced)
+SL_DATASET = use route fractions from an earlier run. gebruikt om de statisch output als input te gebruiken voor dynamische model
+SL_NONE = geen keuze gemaakt voor de tri begint. Might be used in combintation with WMS for en-trip route choice.
+! SL_NONE checken, lijkt handig.
+
+
+routeChoice.periodEndTimes = set the time interval at which the route choice should be recalculateda used by routeChoice.preTrip
+! bruikbaar?
+
+
+CONCLUSION: in route keuze moet ik het zo aanpassen dat mensen een andere route kiezen.
+
+
+---------------------------------------------
+## ROUTE COST model ##
+----------------------------------------------
+in: travel times
+
+travel times of previous iterations are used to compute route choice. Daarom moet de costs voor first iteration bepaald zijn. In de opvolgende iterations a generalized cost function is used compose of travel time, distance etc.
+
+Er zijn twee opties mogelijk to compute travel time:
+1) reactive
+2) predictive
+
+Bij (1) reactive, travel time voor alle links op zelfde moment. is aaname dat de reistijd bepaald kan worden door de som van alle links.
+Bij (2) predictive is more realistic. it takes into account the time taken to traverse (doorkruizen) a link, to determin the time starting to trever the next link (snap ik niet)
+
+routeCost.initialReactive = true is default. anders heb je al route data set nodig (met kosten links)
+
+
+routeCost.succesiveReactive = false is default. is oke.
+
+
+
+CONCLUSION - hier is niet veel keuze. gewoon predictive, dus default kiezen.
+
+
+
+
+
+
+
+-------------------------------------
+## TRAFFIC PROPAGATION model ##
+-------------------------------------
+
+twee delen: madam (macroscopic dynamic assignment) and xstream (junction model)
+maakt gebruik van een cell transmition model. at each time step of simulation, the traffic state of each cell is updated as vehicles move rom one cell to another
+
+
+
+
+
+
+
+
+
+
+## OUTPUT ##

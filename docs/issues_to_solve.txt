@@ -1,0 +1,5 @@
+issues to solve
+
+
+- wat te doen met mensen in het network die op een route zitten die overstroomt.
+- dat wil je eigenlijk niet
