@@ -6,3 +6,8 @@
 maar kan niet, want deze is niet dynamisch.
 
 ## moet via route cost, doordat travel time hoog worden, en daardoor andere keuze
+
+
+
+
+nu gaat door uitval link file terug tot aan origin, waardoor ook andere route niet meer beschikbaar komt.

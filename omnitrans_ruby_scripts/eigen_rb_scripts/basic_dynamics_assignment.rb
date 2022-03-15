@@ -26,7 +26,7 @@ streamLine.input.odMatrix = [1, 2, 2, 1]
 
 
 #TRAFFIC PROPAGATION
-streamLine.propagation.duration = 14400
+streamLine.propagation.duration = 86400
 
 
 # OUTPUT

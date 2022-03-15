@@ -3,3 +3,15 @@ issues to solve
 
 - wat te doen met mensen in het network die op een route zitten die overstroomt.
 - dat wil je eigenlijk niet
+
+
+- kijken hoe enroute beter kan
+
+nu is het pre-trip, maar dan gaan mensen ook network op wat gaat overstromen en zitten dan vast.
+
+
+
+- eigenlijk network aanpassingen inbrengen, en daarmee routes, want die verminderen snel
+
+
+dynamisch network invoeren.

@@ -89,7 +89,7 @@ twee delen: madam (macroscopic dynamic assignment) and xstream (junction model)
 maakt gebruik van een cell transmition model. at each time step of simulation, the traffic state of each cell is updated as vehicles move rom one cell to another
 
 
-
+streamLine.output.persistCostSnapshots = true --> zodat er meer data op links is
 
 
 
