@@ -46,6 +46,8 @@ streamLine.routeChoice.preTripPercentageApplied = 1.0
 ##ROUTE COST MODEL
 ##-------------------------------------------
 #hier moet de ouput van de vorige als input.
+streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
+
 
 
 
