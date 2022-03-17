@@ -1,0 +1,6 @@
+
+T1
+demand period = 2 hrs
+duration: 2 hrs
+
+G_available = network eind T1 = network start T2

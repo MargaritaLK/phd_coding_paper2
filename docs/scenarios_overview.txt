@@ -1,13 +1,16 @@
-## scnearios to calculate
+
+
+description = 'zuidrand_denhelder_dryNetwork'
+user_in = 1
+result_in = 86
+iteration_in = 5
+variant = 'T1'
 
 
 
-## varieren met flood depth
-# evt ook nog in de aankomst tijd
 
-
-## varieren met dorpskernen
-
-
-
-## uitval wegen moet er ook in als ik varieer met de aarival timme
+description = 'zuidrand_denhelder_network1HR'
+user_in = 1
+result_in = 85
+iteration_in = 5
+variant = 'T1'

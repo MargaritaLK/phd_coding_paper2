@@ -110,7 +110,7 @@ linknr direction lans
 
 
 SELECT * FROM simple.link1data1
---
+--leeg
 
 SELECT * FROM simple.link2_1data1
 --link nr direction and typenr
