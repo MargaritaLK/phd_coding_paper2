@@ -1,3 +1,14 @@
+-----------------------------
+Result overview
+------------------------------------
+40: R_temp
+50: R_initial
+60: R_T1
+70: R_T2
+
+
+
+
 
 
 description = 'zuidrand_denhelder_dryNetwork'

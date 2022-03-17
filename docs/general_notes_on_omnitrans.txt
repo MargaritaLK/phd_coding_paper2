@@ -15,3 +15,14 @@ use:
 - dynamic link attribute adaptor
 
 let op, is voor 1 direction of the road
+
+
+
+input voor model is:
+- transportation network
+- trave demand
+- route set
+
+(deze zijn allemaal niewe, voor iedere T.)
+
+enigs wat overgenomen moet worden is de condities op de links.
