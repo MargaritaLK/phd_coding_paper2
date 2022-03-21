@@ -15,6 +15,8 @@ streamLine.input.odMatrix = [1, 10, 10, 1]
 # streamLine.input.odMatrix = [1, 10, [10, 1000 ], 1]
 # streamLine.input.durations = [7200, 7200]
 
+streamLine.input.initialCosts = [1, 10, 100, 1, 60, 5]
+
 
 #ROUTE SET GENERATION
 ##--------------------------------------
@@ -48,7 +50,7 @@ streamLine.routeChoice.preTripPercentageApplied = 1.0
 
 
 
-streamLine.routeCost.initialReactive = true
+streamLine.routeCost.initialReactive = false
 streamLine.routeCost.successiveReactive = true
 #streamLine.routeCost.valueOfTime = [[1,1]]
 #streamLine.routeCost.valueOfDistance = [[1,0]]
@@ -56,7 +58,9 @@ streamLine.routeCost.collectionInterval = 300
 
 # Set the initial route data set if route information from a previous run
 #  is being used to calculate initial route costs.
-streamLine.routeCost.initialRouteDataSet.pmturi = [1, 10, 100, 1, 60, 5]
+
+#streamLine.routeCost.initialRouteDataSet = SL_NONE
+#streamLine.routeCost.initialRouteDataSet.pmturi = [1, 10, 100, 1, 60, 5]
 
 
 
