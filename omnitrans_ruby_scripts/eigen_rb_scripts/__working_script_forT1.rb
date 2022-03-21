@@ -8,9 +8,12 @@ streamLine.input.network = [10, 10]
 
 
 
-## OD - at once met leegloop tijd
-streamLine.input.odMatrix = [1, 10, [10, 1000 ], 1]
-streamLine.input.durations = [7200, 36000]
+#OD - one- zonder stop
+streamLine.input.odMatrix = [1, 10, 10, 1]
+
+# # OD - at once met leegloop tijd
+# streamLine.input.odMatrix = [1, 10, [10, 1000 ], 1]
+# streamLine.input.durations = [7200, 7200]
 
 
 #ROUTE SET GENERATION
@@ -30,13 +33,7 @@ streamLine.routeChoice.preTrip.spread = 0.14
 streamLine.routeChoice.preTrip.relativeSpread = true
 streamLine.routeChoice.preTrip.relativeSpreadBasedOnCost = true
 #streamLine.routeChoice.periodEndTimes = [enTimPeriod1, ....endTimePeriodn]
-streamLine.routeChoice.periodEndTimes =
-       [ 900,  1800,  2700,  3600,  4500,  5400,  6300,  7200,  8100,
-        9000,  9900, 10800, 11700, 12600, 13500, 14400, 15300, 16200,
-       17100, 18000, 18900, 19800, 20700, 21600, 22500, 23400, 24300,
-       25200, 26100, 27000, 27900, 28800, 29700, 30600, 31500, 32400,
-       33300, 34200, 35100, 36000, 36900, 37800, 38700, 39600, 40500,
-       41400, 42300 ]
+streamLine.routeChoice.periodEndTimes = [ 900,  1800,  2700,  3600,  4500,  5400,  6300,  7200]
 
 streamLine.routeChoice.preTripPercentageApplied = 1.0
 
@@ -46,8 +43,8 @@ streamLine.routeChoice.preTripPercentageApplied = 1.0
 ##ROUTE COST MODEL
 ##-------------------------------------------
 #hier moet de ouput van de vorige als input.
-# streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
-streamLine.routeCost.routeDataSet.saveIterations = true
+#streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
+#streamLine.routeCost.routeDataSet.saveIterations = true
 
 
 
@@ -55,7 +52,7 @@ streamLine.routeCost.routeDataSet.saveIterations = true
 
 #TRAFFIC PROPAGATION
 ##------------------------------------------
-streamLine.propagation.duration = 43200
+streamLine.propagation.duration = 7200
 streamLine.propagation.adjustSegmentLength = true
 
 
