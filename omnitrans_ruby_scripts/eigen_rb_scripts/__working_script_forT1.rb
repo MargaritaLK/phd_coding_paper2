@@ -46,7 +46,8 @@ streamLine.routeChoice.preTripPercentageApplied = 1.0
 #streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
 #streamLine.routeCost.routeDataSet.saveIterations = true
 
-
+streamLine.routeCost.finalRouteDataSet = SL_OMNITRANS
+streamLine.routeCost.finalRouteDataSet.pmturi = [1, 10, 100, 1, 60, 5]
 
 
 
