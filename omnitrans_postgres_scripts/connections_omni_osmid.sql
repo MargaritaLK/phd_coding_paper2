@@ -1,8 +1,9 @@
-DROP TABLE IF EXISTS public.links_omni_osmid;
-CREATE TABLE public.links_omni_osmid as
 
-SELECT  b.*, a.osmid
+DROP TABLE IF EXISTS public.links_omni_osmid2;
+CREATE TABLE public.links_omni_osmid2 as
 
-FROM public.point_where_flood_calculated as a
-JOIN public.links_omnitrans_buffer2m as b
+SELECT  b.* , a.arrivaltime, a.minutes, a.osmid, a.maaiveld
+
+FROM public.df_arrival_segments as a
+JOIN public.links_omni_buffer4m as b
 ON ST_Contains(b.geom, a.geom)
