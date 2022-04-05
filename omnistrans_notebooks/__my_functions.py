@@ -23,8 +23,12 @@ def get_link_data(variant_name, user_in, result_in, iteration_in, postgreSQLConn
         AND b.iteration = {iteration_in}\
         "
     link_df = gpd.GeoDataFrame.from_postgis(sql, postgreSQLConnection, geom_col='geom' )
+    print(f'variant name: {variant_name}')
+    print(f'result in: {result_in}')
+    
     print(f'first timestep: {link_df.time.min()}')
     print(f'last timestep: {link_df.time.max()}')
+    
     
     #create unique links every dir
     link_df["linknr_dir"] = link_df["linknr"].astype(str) + "_" + link_df["direction"].astype(str)
@@ -86,6 +90,23 @@ def get_timesteps_plot(link_df):
   
     timesteps_plot = link_df.time.unique() - first_timestep
     return timesteps_plot
+
+
+
+def get_time_dimensions(link_df):
+    link_df.time.unique()
+    first_timestep = link_df.time.min()
+    last_timestep = link_df.time.max()
+    time_period = last_timestep - first_timestep
+    
+    print(f'first timestep: {first_timestep}')
+    print(f'last timestep: {last_timestep}')
+    print(f'simulation period: {time_period} minutes')
+    print(f'simulation period: {(time_period)/60} hrs')
+  
+    return first_timestep, last_timestep, time_period
+
+
 
 
 
@@ -221,19 +242,52 @@ def plot_density_all_links(link_df, color, simulation_description, figures_path 
         ax.plot(link_data['time'],link_data['density'], linewidth = 1.5, c = color, alpha = 0.3)
 
     ax.set_title(f'density_{simulation_description}') 
+    plt.grid()
     plt.savefig(f'{figures_path}/density_{simulation_description}.png', dpi=300)   
 
 
+    
+         
+def plot_load_all_links(link_df, color, simulation_description, figures_path ):
+    fig = plt.figure(figsize=(20, 5),facecolor='#e9ecef')
+    ax = fig.add_subplot(1, 1, 1)
+    ax.set_facecolor('#e9ecef')
+    
+    links_nrdr = link_df.linknr_dir.unique()
+    for i in links_nrdr:
+        link_data = link_df[link_df["linknr_dir"] == i]
+        ax.plot(link_data['time'],link_data['load'], linewidth = 1.5, c = color, alpha = 0.3)
+    
+    plt.grid()
+    ax.set_title(f'loads_{simulation_description}') 
+    plt.savefig(f'{figures_path}/laods_{simulation_description}.png', dpi=300)   
 
     
     
 #--------------------------------------------------------------------------------
-## CLEARANCE TIME
-##---------------------------------------------------------------------
+## visualization traffic flow
+##-----------------------------------------------------------------------------
+
+def get_links_geom(postgreSQLConnection):
+    geom_sql = 'SELECT * FROM public.links_geom AS a'
+    geom_df = gpd.GeoDataFrame.from_postgis(geom_sql, postgreSQLConnection, geom_col='geom' )
+    geom_df.plot(column='roadtypeab')
+    
+    return geom_df
+
+##----------------------------------------------------------------------------------
 
 
 
-
+def plot_traffic_load(geom_df, df, timestep):
+    fig = plt.figure(figsize=(10, 10))
+    ax = fig.add_subplot(1, 1, 1)
+    ax.set_facecolor('#93a8ac')
+    
+    timeslice = df[df["time"] == timestep]
+    geom_df.plot(ax=ax, color= '#d9d9d9' )
+    timeslice.plot(ax=ax,column='load', cmap="viridis", linewidth=2)
+    return timestep
 
 
 
