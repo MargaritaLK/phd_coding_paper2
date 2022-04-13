@@ -10,6 +10,8 @@ import random
 import plotly.express as px
 
 
+
+
 #--------------------------------------------------------------------------------
 ## GET DATA FROM DB
 #------------------------------------------------------------------------------------------------------------
@@ -65,6 +67,15 @@ def get_linknrs_connectors(variant_name, alchemyEngine):
 
 
 
+def get_centroid_data(variant_name, user_in, result_in, iteration_in, alchemyEngine):
+    sql = f"SELECT * FROM {variant_name}.centroid5_2data1 as b \
+        WHERE   b.result = {result_in}\
+        AND b.user = {user_in}\
+        AND b.iteration = {iteration_in}"
+    centroid_data = pd.read_sql_query(sql, alchemyEngine)
+    return centroid_data
+
+
 ## DERIVE SOME BASICS
 #------------------------------------------------------------------------------------------------------------
 
@@ -74,6 +85,9 @@ def get_list_uniquelinks(link_df):
     return links_nrdr
 
 
+
+def get_timesteps_sim(link_df):
+    return link_df.time.unique()
 
 #--------------------------------------------------------
 
@@ -275,6 +289,36 @@ def get_links_geom(postgreSQLConnection):
     
     return geom_df
 
+
+def get_links_geom_noconnectors(postgreSQLConnection, variant_name, alchemyEngine):
+    geom_sql = 'SELECT * FROM public.links_geom AS a'
+    geom_df = gpd.GeoDataFrame.from_postgis(geom_sql, postgreSQLConnection, geom_col='geom' )
+    
+    linknrs_connectors = get_linknrs_connectors(variant_name, alchemyEngine)
+    geom_df_noconnectors = geom_df[~geom_df["linknr"].isin(linknrs_connectors)] #is not in, due to the ~
+    
+    return geom_df_noconnectors
+
+
+
+
+
+def get_centroids_geom(postgreSQLConnection):
+    centroids_geom_sql = 'SELECT * FROM public.centroids_geom AS a'
+    centroids_geom_df = gpd.GeoDataFrame.from_postgis(centroids_geom_sql, postgreSQLConnection, geom_col='geom' )
+#     centroids_geom_df.plot()
+    
+    return centroids_geom_df
+
+
+
+
+def export_linkdata_geojson(link_df, timestep, output_path, simulation_description):
+    timeslice = link_df.loc[link_df.time == timestep]
+    print(type(timeslice))
+    timeslice.to_file(f'{output_path}/linkdata_time/{simulation_description}_link_time{timestep}.geojson', drive="GeoJSON")
+    
+    
 ##----------------------------------------------------------------------------------
 
 
