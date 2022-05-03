@@ -177,8 +177,8 @@ def plot_clearance_time(timesteps_plot, cum_departures, in_network, arrivals_saf
     ax1 = fig.add_subplot(1, 1, 1)
 
     #total nr hh
-    ax1.fill_between(timesteps_plot, 0, total_nr_hh , color= '#fcbf49', alpha = 0.4)
-    ax1.hlines(total_nr_hh, 0,timesteps_plot.max(), color = '#fcbf49' )
+    ax1.fill_between(timesteps_plot, 0, total_nr_hh , color= '#fcbf49', alpha = 1)
+    ax1.hlines(total_nr_hh, 0,timesteps_plot.max(), color = '#343a40' )
     # ax1.text(len(timesteps_plot)/3, total_nr_hh/1.4, 'AT HOME', color = '#f8961e')
 
     ## total demand
@@ -186,18 +186,18 @@ def plot_clearance_time(timesteps_plot, cum_departures, in_network, arrivals_saf
 
 
     #departures
-    ax1.plot(timesteps_plot, cum_departures, c = '#d00000', markersize = 3)
-    ax1.fill_between(timesteps_plot, arrivals_safe['linkcumulativeinflow'], cum_departures, color='#d00000', alpha = 0.5)
+    ax1.plot(timesteps_plot, cum_departures, c = '#ef476f', markersize = 3)
+    ax1.fill_between(timesteps_plot, arrivals_safe['linkcumulativeinflow'], cum_departures, color='#ef476f', alpha = 1)
     # ax1.text(len(timesteps_plot)/3, total_nr_hh/2, 'IN NETWORK', color = '#d00000')
 
     ##safe arrivals
-    ax1.plot(timesteps_plot, arrivals_safe['linkcumulativeinflow'], c = '#52b788', linewidth = 2)
-    ax1.fill_between(timesteps_plot, 0, arrivals_safe['linkcumulativeinflow'] , color= '#52b788', alpha = 0.5)
+    ax1.plot(timesteps_plot, arrivals_safe['linkcumulativeinflow'], c = '#343a40', linewidth = 1)
+    ax1.fill_between(timesteps_plot, 0, arrivals_safe['linkcumulativeinflow'] , color= '#06d6a0', alpha = 1)
 
     #clearance time
     ax1.vlines(clearance_time, 0, total_nr_hh*1.0, color= '#2d6a4f', linestyles='--', linewidth = 2)
     ax1.text(clearance_time*1.02, total_arrivals*1.06, 
-             f'clearance: {percentage_cleared }% in {np.round(clearance_time/60,2)} hrs', color= '#2d6a4f' )
+             f'clearance: {percentage_cleared }% in {np.round(clearance_time/60,2)} hrs', color= '#ffd166' )
     # ax1.text(clearance_time/1.5, total_nr_hh/3, 'SAFE', color = '#2d6a4f')
 
     ax1.set_title(f'{simulation_description} households')
@@ -285,7 +285,7 @@ def plot_load_all_links(link_df, color, simulation_description, figures_path ):
 def get_links_geom(postgreSQLConnection):
     geom_sql = 'SELECT * FROM public.links_geom AS a'
     geom_df = gpd.GeoDataFrame.from_postgis(geom_sql, postgreSQLConnection, geom_col='geom' )
-    geom_df.plot(column='roadtypeab')
+#     geom_df.plot(column='roadtypeab')
     
     return geom_df
 
