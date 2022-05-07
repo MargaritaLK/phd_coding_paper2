@@ -17,10 +17,10 @@ import uuid
 def create_sample_houses_withinZone(samplesize, houses_all, selected_zone ):
     sample_uuid = uuid.uuid1()
     
-    zone_name = selected_zone.BU_NAAM
+    zone_name = selected_zone.BU_NAAM.values[0]
     
     #calculate_houses_in_zones
-    houses_within_zone = houses_all[houses_all.geometry.within(selected_zone.geometry)]
+    houses_within_zone =  gpd.sjoin(houses_all,selected_zone)
     
 
     #create sample
@@ -40,6 +40,7 @@ def create_sample_houses_withinZone(samplesize, houses_all, selected_zone ):
     houses_within_zone.plot(ax=ax, markersize=2)
     houses_df.plot(ax=ax, markersize=4)
     ax.set_axis_off()
+    plt.close()
     
     return zone_name, houses_df
 
@@ -97,10 +98,9 @@ def create_df_flooddepth_houses(scenario_name, samplesize, zone_name, houses_df,
     
     
 ### COMPUTE first arrival and max depth for zone
-def calculate_first_qth_arrival_and_maxdepth(flooddepth_time_houses_df):
+def calculate_first_qth_arrival_and_maxdepth(flooddepth_time_houses_df, zone_name):
     arrival_times = []
     collection_of_maxdepths = []
-    quantile_value = 0.1
     
     #loop over all (sample) houses within zone
     for house, flooddepths in flooddepth_time_houses_df.items():
@@ -108,31 +108,52 @@ def calculate_first_qth_arrival_and_maxdepth(flooddepth_time_houses_df):
         collection_of_maxdepths.append(max_depth_house)
 
         for i in range(len(flooddepths)):
-            if flooddepths[i] > 0.01:
+            if flooddepths[i] > 0.05:
                 arrival_time = flooddepth_time_houses_df.index[i]
                 arrival_timestamp = datetime.timestamp(arrival_time)
                 arrival_times.append(arrival_timestamp)
                 break
                 
 
-                
-    #derive arrival for zone
-    first_qth_arrival = np.quantile(arrival_times, quantile_value)
-    first_qth_arrival_dt = datetime.fromtimestamp(first_qth_arrival)
-    
-    
-    #derive max depth for zone
-    max_depth_qt = np.quantile(collection_of_maxdepths,0.95)
-    max_depth = max(collection_of_maxdepths)
-    print(f'max_depth_qt: {max_depth_qt}')
-    print(f'max_depth: {max_depth}')
-    
+    # return one values for entire zone        
+    if len(arrival_times) == 0:
+        first_qth_arrival = np.nan
+        first_qth_arrival_dt = np.nan
+        max_depth_qt = np.nan
+        max_depth = np.nan
+            
+    else: 
+        #derive arrival for zone
+       
+        print(f'flood values for {zone_name}')
+        print('----------------------')
+        first_qth_arrival = np.quantile(arrival_times, 0.1)
+        first_qth_arrival_dt = datetime.fromtimestamp(first_qth_arrival)
+        print(f'first_qth_arrival: {first_qth_arrival}')
+        print(f'first_qth_arrival_dt: {first_qth_arrival_dt}')
+
+        #derive max depth for zone
+        max_depth_qt = np.quantile(collection_of_maxdepths,0.95)
+        max_depth = max(collection_of_maxdepths)
+        print(f'max_depth_qt : {max_depth_qt}')
+        print(f'max_depth: {max_depth}')
+
     
     return first_qth_arrival_dt, max_depth, max_depth_qt
 
     
+   
+
     
-def plot_flooddepth_houses_in_zone(zone_name, flooddepth_time_houses_df, first_qth_arrival, max_depth, max_depth_qt, time_humanized, output_path):
+def plot_flooddepth_houses_in_zone(zone_name, 
+                                   flooddepth_time_houses_df, 
+                                   first_qth_arrival_dt, 
+                                   max_depth, 
+                                   max_depth_qt, 
+                                   time_humanized, 
+                                   scenario_name,
+                                   output_path):
+    
     fig = plt.figure(figsize=(4, 2))
     ax = fig.add_subplot(1, 1, 1)
 
@@ -140,11 +161,13 @@ def plot_flooddepth_houses_in_zone(zone_name, flooddepth_time_houses_df, first_q
         ax.plot(content, c = '#003566', alpha = 0.5)
 
 #     ax.set_xlim(time_humanized[0],time_humanized[40])
-    ax.axvline(x = first_qth_arrival, color = 'r', linestyle ='--')
+    ax.axvline(x = first_qth_arrival_dt, color = 'r', linestyle ='--')
     ax.axhline(max_depth, color= '#ffc300', linestyle ='--')
     ax.axhline(max_depth_qt, color= '#e76f51', linestyle ='--')
+#     ax.set_ylim(0, 3.5)
     plt.title(f'{zone_name}')
-    plt.savefig(f'{output_path}/samples_zones_houses/{zone_name}.png', dpi=300)
+    plt.savefig(f'{output_path}/samples_zones_houses/{zone_name}_{scenario_name}.png', dpi=300)
+    plt.close()
 
     
     
