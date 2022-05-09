@@ -30,3 +30,20 @@ JOIN public.links_omni_buffer4m as b
 ON ST_Contains(b.geom, a.geom)
 
 WHERE b.roadtypeab != 'Connector'
+
+
+
+
+
+--- voor scen 1 en 2
+
+DROP TABLE IF EXISTS public.links_omni_flood_uuid28d3_scen2_n9corr;
+CREATE TABLE public.links_omni_flood_uuid28d3_scen2_n9corr as
+
+SELECT  b.* , a.arrivaltime, a.min_int as minutes, a.osmid, a.maaiveld
+
+FROM public.segments_uuid28d3_scen2_n9corr as a
+JOIN public.links_omni_buffer4m as b
+ON ST_Contains(b.geom, a.geom)
+
+WHERE b.roadtypeab != 'Connector'
