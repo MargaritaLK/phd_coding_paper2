@@ -8,6 +8,8 @@ import numpy as np
 import time
 import random
 import plotly.express as px
+from datetime import timedelta, datetime, tzinfo, timezone,  time
+import matplotlib.dates as mdates
 
 
 
@@ -105,6 +107,14 @@ def get_timesteps_plot(link_df):
     timesteps_plot = link_df.time.unique() - first_timestep
     return timesteps_plot
 
+
+def get_datetimes_plot(timesteps_plot):
+    datetimes_plot = []
+    for i in timesteps_plot:
+        delta = timedelta(minutes=int(i))
+        datetime1 = datetime(2000, 1, 1, tzinfo=timezone.utc) + delta
+        datetimes_plot.append(datetime1)
+    return datetimes_plot
 
 
 def get_time_dimensions(link_df):
@@ -243,9 +253,10 @@ def plot_load_one_link(link_df, linknr_plot, link_name, simulation_description, 
     print(f'sum load: {sum_load}')
     print('----')
     
+
     
-        
-def plot_density_all_links(link_df, color, simulation_description, figures_path ):
+    
+def plot_density_all_links(link_df, datetimes_plot, color, simulation_description, figures_path ):
     fig = plt.figure(figsize=(20, 5),facecolor='#e9ecef')
     ax = fig.add_subplot(1, 1, 1)
     ax.set_facecolor('#e9ecef')
@@ -253,16 +264,23 @@ def plot_density_all_links(link_df, color, simulation_description, figures_path 
     links_nrdr = link_df.linknr_dir.unique()
     for i in links_nrdr:
         link_data = link_df[link_df["linknr_dir"] == i]
-        ax.plot(link_data['time'],link_data['density'], linewidth = 1.5, c = color, alpha = 0.3)
+        ax.plot(datetimes_plot,link_data['density'], linewidth = 1.5, c = color, alpha = 0.3)
 
+    #timestamps
+    hours = mdates.HourLocator(interval = 2)
+    ax.xaxis.set_major_locator(hours)
+    h_fmt = mdates.DateFormatter('%H')
+    ax.xaxis.set_major_formatter(h_fmt)
+   
     ax.set_title(f'density_{simulation_description}') 
     plt.grid()
-    plt.savefig(f'{figures_path}/density_{simulation_description}.png', dpi=300)   
+    plt.savefig(f'{figures_path}/density_{simulation_description}.png', dpi=300)
+    plt.xlim(datetimes_plot[0], datetimes_plot[int(23*(60/5))])
 
 
     
-         
-def plot_load_all_links(link_df, color, simulation_description, figures_path ):
+
+def plot_load_all_links(link_df, datetimes_plot, color, simulation_description, figures_path ):
     fig = plt.figure(figsize=(20, 5),facecolor='#e9ecef')
     ax = fig.add_subplot(1, 1, 1)
     ax.set_facecolor('#e9ecef')
@@ -270,7 +288,14 @@ def plot_load_all_links(link_df, color, simulation_description, figures_path ):
     links_nrdr = link_df.linknr_dir.unique()
     for i in links_nrdr:
         link_data = link_df[link_df["linknr_dir"] == i]
-        ax.plot(link_data['time'],link_data['load'], linewidth = 1.5, c = color, alpha = 0.3)
+        ax.plot(datetimes_plot,link_data['load'], linewidth = 1.5, c = color, alpha = 0.3)
+    
+    #timestamps
+    hours = mdates.HourLocator(interval = 2)
+    ax.xaxis.set_major_locator(hours)
+    h_fmt = mdates.DateFormatter('%H')
+    ax.xaxis.set_major_formatter(h_fmt)
+    plt.xlim(datetimes_plot[0], datetimes_plot[int(23*(60/5))])
     
     plt.grid()
     ax.set_title(f'loads_{simulation_description}') 
