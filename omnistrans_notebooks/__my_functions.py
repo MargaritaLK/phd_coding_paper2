@@ -362,6 +362,15 @@ def plot_traffic_load(geom_df, df, timestep):
 
 
 
+def get_minutes_from_start_flood(start_breach_time_obj, timestep_str):
+    if len(timestep_str) == 19: #is lengte van goede timstamp format
+        datetime_obj = datetime.strptime(timestep_str, '%Y-%m-%d %H:%M:%S')
+        delta_from_start = datetime_obj - start_breach_time_obj
+        minutes_from_start =  int(delta_from_start.total_seconds() / 60)
+        return minutes_from_start
+    else:
+        print('a timestamp skipped due to error in notation')
+
 
 
 
