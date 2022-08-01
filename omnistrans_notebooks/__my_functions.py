@@ -150,10 +150,11 @@ def compute_departures(link_io_flow_df, linknr_connectors):
 #----------------------------------------------------------------------------------------------------
 
 
-def compute_in_network_and_arrivals(cum_departures, link_io_flow_df, supersafe_zone_nr, supersafe_linknr, supersafe_direction, total_nr_hh):
+def compute_in_network_and_arrivals(cum_departures, link_io_flow_df, supersafe_zone_nr, supersafe_linknrs, supersafe_direction, total_nr_hh):
     
     #calculate ARRIVALS
-    arrivals_safe = link_io_flow_df.loc[(link_io_flow_df.linknr == supersafe_linknr) & (link_io_flow_df.direction == supersafe_direction)]
+    arrivals_safe_temp = link_io_flow_df.loc[(link_io_flow_df['linknr'].isin(supersafe_linknrs) & (link_io_flow_df.direction == supersafe_direction))]
+    arrivals_safe = arrivals_safe_temp.groupby('time',  as_index=False).sum()
     total_arrivals = np.round(arrivals_safe.linkcumulativeoutflow.max())
     
     ## calcualate number of people in network
@@ -361,6 +362,7 @@ def plot_traffic_load(geom_df, df, timestep):
 
 
 
+# start_breach_time_obj = datetime.strptime(start_breach_time, '%Y-%m-%dT%H:%M:%S')
 
 def get_minutes_from_start_flood(start_breach_time_obj, timestep_str):
     if len(timestep_str) == 19: #is lengte van goede timstamp format
