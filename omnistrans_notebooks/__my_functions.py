@@ -339,10 +339,11 @@ def get_centroids_geom(postgreSQLConnection):
 
 
 
-def export_linkdata_geojson(link_df, timestep, output_path, simulation_description):
+def export_linkdata_geojson(link_df, timestep, output_path, simulation_description, hr):
     timeslice = link_df.loc[link_df.time == timestep]
     print(type(timeslice))
-    timeslice.to_file(f'{output_path}/linkdata_time/{simulation_description}_link_time{timestep}.geojson', drive="GeoJSON")
+    timeslice.to_file(f'{output_path}/linkdata_time/{simulation_description}_t_{timestep}_{hr}hr.geojson', drive="GeoJSON")
+    
     
     
 ##----------------------------------------------------------------------------------
