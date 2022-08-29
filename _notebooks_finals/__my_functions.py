@@ -38,6 +38,8 @@ def get_link_data(variant_name, user_in, result_in, iteration_in, postgreSQLConn
     link_df["linknr_dir"] = link_df["linknr"].astype(str) + "_" + link_df["direction"].astype(str)
     return  link_df
 
+# def save_link_data(link_df, output_path, directory_code):
+#     link_df.to_json(f'{output_path}/{directory_code}test.json')
 
 #------------------------------------------------------------------------------------------------------------
 
@@ -56,6 +58,9 @@ def get_link_ioflow(variant_name, user_in, result_in, iteration_in, postgreSQLCo
     link_io_flow["linknr_dir"] = link_io_flow["linknr"].astype(str) + "_" + link_io_flow["direction"].astype(str)
     return link_io_flow
 
+
+# def save_link_ioflow_data(link_io_flow, output_path, directory_code):
+#     link_io_flow.to_json(f'{output_path}/{directory_code}/link_io_flow_{directory_code}.json')
 
 #------------------------------------------------------------------------------------------------------------
 
